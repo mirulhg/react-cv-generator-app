@@ -1,0 +1,102 @@
+:root{
+      --teal:#0f8b91;
+      --light:#f4f8f9;
+      --muted:#6b7280;
+      --dark:#0b1220;
+      --accent:#0b8b91;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{background:#e9eef0; margin:32px; color:var(--dark);}
+
+    .resume{
+      max-width:900px;
+      margin:0 auto;
+      background:white;
+      display:grid;
+      grid-template-columns:260px 1fr;
+      box-shadow:0 6px 30px rgba(11,18,32,0.12);
+      border-radius:8px;
+      overflow:hidden;
+    }
+
+    /* header band that crosses both columns */
+    .header-band{
+      grid-column:1/-1;
+      background:linear-gradient(90deg,var(--teal) 0%, #0c6b6f 100%);
+      color:white;
+      padding:34px 40px 14px 40px;
+      position:relative;
+      display:flex;
+      align-items:end;
+      gap:18px;
+    }
+
+    .photo{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      border:6px solid rgba(255,255,255,0.9);
+      overflow:hidden;
+      background:white;
+      flex-shrink:0;
+      transform:translateY(24px);
+    }
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .header-info{
+      display:flex;flex-direction:column;gap:6px; margin-left:8px;
+    }
+    .name-small{font-size:20px;opacity:0.95}
+    .name-big{font-size:48px;font-weight:800;line-height:0.9}
+    .job-title{
+      position:absolute;left:0;right:0;bottom:0;margin:0 auto;max-width:900px;padding:10px 40px;background:transparent;color:rgba(255,255,255,0.95);font-weight:600;border-top:4px solid rgba(255,255,255,0.06);
+    }
+
+    /* left column (sidebar) */
+    .sidebar{
+      background:var(--light);
+      padding:92px 26px 36px 26px; /* leave space for header photo */
+      border-right:1px solid rgba(11,18,32,0.04);
+    }
+    .section{margin-bottom:22px}
+    .section h3{font-size:14px;margin:0 0 8px 0;letter-spacing:0.6px;color:var(--dark)}
+    .muted{color:var(--muted);font-size:14px;line-height:1.45}
+
+    .contact-item{display:flex;gap:10px;align-items:center;margin:8px 0}
+    .divider{height:3px;background:var(--teal);width:100%;margin:10px 0 12px 0}
+
+    .profile{font-size:14px;color:var(--muted);text-align:justify}
+
+    .skills-list, .lang-list{list-style:none;padding:0;margin:0}
+    .skills-list li, .lang-list li{margin:8px 0;padding-left:18px;position:relative}
+    .skills-list li:before, .lang-list li:before{content:'\2713';position:absolute;left:0;color:var(--teal);font-weight:700}
+
+    /* main column */
+    .main{padding:92px 36px 36px 36px}
+    .main h2{font-size:16px;margin:0 0 12px 0}
+
+    .job{
+      margin-bottom:18px;padding-bottom:12px;border-bottom:1px dashed rgba(11,18,32,0.06)
+    }
+    .job .company{font-weight:700}
+    .job .role{color:var(--muted);font-size:13px;margin-bottom:6px}
+    .bullets{margin:8px 0 0 18px;color:var(--muted);font-size:14px}
+    .bullets li{margin-bottom:8px}
+
+    .education{margin-top:12px}
+    .edu-item{margin-bottom:12px}
+    .edu-item .degree{font-weight:700}
+    .edu-item .school{color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:800px){
+      .resume{grid-template-columns:1fr;}
+      .sidebar{order:2;padding:22px}
+      .main{order:3;padding:22px}
+      .header-band{padding:20px}
+      .photo{position:absolute;left:18px;top:18px;transform:none}
+      .header-band{padding-left:160px}
+      .job, .edu-item{border-bottom:none}
+    }
