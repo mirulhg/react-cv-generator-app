@@ -1,10 +1,7 @@
 import { useState, useRef } from "react";
 import html2pdf from "html2pdf.js";
-<<<<<<< HEAD
-=======
 import Section from "./Section.jsx";
 import Skills from "./Skills.jsx";
->>>>>>> 619e8da (version 1.0)
 
 export default function InputCv() {
   const maxSize = 2 * 1024 * 1024;
@@ -20,19 +17,11 @@ export default function InputCv() {
     telfon: "",
     lokasi: "",
   });
-<<<<<<< HEAD
-  const [skills, setSkills] = useState([]);
-=======
-
->>>>>>> 619e8da (version 1.0)
   const [pengalaman, setPengalaman] = useState({
     posisi: "",
     perusahaan: "",
     tahun: "",
-<<<<<<< HEAD
-=======
     detail: "",
->>>>>>> 619e8da (version 1.0)
   });
   const [bahasa, setBahasa] = useState({
     inggris: "",
@@ -63,10 +52,6 @@ export default function InputCv() {
     setProfile((prev) => ({ ...prev, [name]: value }));
   }
 
-<<<<<<< HEAD
-  function handleSkills(event) {
-    setSkills([event.target.value]);
-=======
   const [skills, setSkills] = useState("");
   const [listSkills, setListSkills] = useState([]);
 
@@ -77,23 +62,13 @@ export default function InputCv() {
   function handleTambahSkills() {
     setListSkills((prev) => [...prev, skills]);
     setSkills("");
->>>>>>> 619e8da (version 1.0)
   }
 
   function handlePengalaman(event) {
     const { name, value } = event.target;
     setPengalaman((prev) => ({ ...prev, [name]: value }));
   }
-<<<<<<< HEAD
-  const [listSkills, setListSkills] = useState("");
-
-  function handleTambahSkills() {
-    setListSkills((prev) => [...prev, skills]);
-    setSkills("");
-  }
-=======
   
->>>>>>> 619e8da (version 1.0)
 
   function handleTambahPengalaman() {
     setListPengalaman((prev) => [...prev, pengalaman]);
@@ -101,10 +76,7 @@ export default function InputCv() {
       posisi: "",
       perusahaan: "",
       tahun: "",
-<<<<<<< HEAD
-=======
       detail: "",
->>>>>>> 619e8da (version 1.0)
     });
   }
 
@@ -150,10 +122,7 @@ export default function InputCv() {
         perusahaan: "",
         posisi: "",
         tahun: "",
-<<<<<<< HEAD
-=======
         detail: "",
->>>>>>> 619e8da (version 1.0)
       });
       setBahasa({
         inggris: "",
@@ -318,8 +287,6 @@ export default function InputCv() {
                 placeholder="Tahun bekerja"
               />
             </div>
-<<<<<<< HEAD
-=======
             <div className={groupLabelInput}>
               <label htmlFor="">Detail Pekerjaan</label>
               <textarea
@@ -331,7 +298,6 @@ export default function InputCv() {
                 placeholder="Ceritakan Pengalaman Anda Bekerja Pada Perusahaan"
               />
             </div>
->>>>>>> 619e8da (version 1.0)
             <div className={sideButton}>
               <button onClick={handleTambahPengalaman} className={buttonStyled}>
                 Tambah Pengalaman
@@ -393,28 +359,6 @@ export default function InputCv() {
           </div>
           {submittedData && (
             <>
-<<<<<<< HEAD
-              <div ref={printRef}>
-                <p>Nama: {submittedData.profile.nama}</p>
-                <p>Pekerjaan: {submittedData.profile.pekerjaan}</p>
-                <p>Email: {submittedData.profile.email}</p>
-                <p>Nomor Telfon: {submittedData.profile.telfon}</p>
-                <p>Lokasi: {submittedData.profile.lokasi}</p>
-                <p>Skills : {submittedData.skills}</p>
-                <p>Pengalaman :</p>
-                <ul>
-                  {listPengalaman.map((item, index) => (
-                    <li key={index}>
-                      {item.posisi} - {item.perusahaan} ({item.tahun})
-                    </li>
-                  ))}
-                </ul>
-                <p>Inggris : {submittedData.bahasa.inggris}</p>
-                <p>Spanyol : {submittedData.bahasa.spanyol}</p>
-                <p>Prancis : {submittedData.bahasa.prancis}</p>
-                <p>Education : {submittedData.education}</p>
-                <img src={preview} alt="Preview" />
-=======
               <div className="flex">
                 <p className="flex flex-col border-b-stone-700">
                   <label>Nama: {submittedData.profile.nama}</label>
@@ -444,7 +388,6 @@ export default function InputCv() {
                 <p className="flex flex-col border-b-stone-700">
                   <img src={preview} alt="Preview" />
                 </p>
->>>>>>> 619e8da (version 1.0)
               </div>
             </>
           )}
@@ -498,15 +441,9 @@ export default function InputCv() {
                   <div className="section">
                     <h3>SKILLS</h3>
                     <div className="divider"></div>
-<<<<<<< HEAD
-                    <ul className="skills-list">
-                      <li>{submittedData.skills}</li>
-                    </ul>
-=======
                     {listSkills.map((item, index) => (
                       <Skills key={index} className="skills-list" kemampuan={item} />
                     ))}
->>>>>>> 619e8da (version 1.0)
                   </div>
                   <div className="section">
                     <h3>LANGUAGES</h3>
@@ -520,60 +457,9 @@ export default function InputCv() {
                 </aside>
                 <main className="main">
                   <h2>PROFESSIONAL EXPERIENCE</h2>
-<<<<<<< HEAD
-                  <section className="job">
-                    <div className="company">
-                      {listPengalaman.perusahaan} Year : {listPengalaman.tahun}
-                    </div>
-                    <div className="role">{listPengalaman.pekerjaan}</div>
-                    <ul className="bullets">
-                      <li>
-                        Developed and executed a comprehensive sales strategy,
-                        resulting in a 40% increase in annual revenue within one
-                        year.
-                      </li>
-                      <li>
-                        Identified and pursued new business opportunities
-                        through market research.
-                      </li>
-                    </ul>
-                  </section>
-                  <section className="job">
-                    <div className="company">ABC CORPORATION</div>
-                    <div className="role">
-                      Sales Representative — NY, USA | 00/0000 - 00/0000
-                    </div>
-                    <ul className="bullets">
-                      <li>
-                        Achieved consistent sales targets by successfully
-                        prospecting and closing new business opportunities in a
-                        competitive market.
-                      </li>
-                      <li>
-                        Conducted product demonstrations and presentations to
-                        potential clients.
-                      </li>
-                    </ul>
-                  </section>
-                  <section className="job">
-                    <div className="company">DEF RESEARCH AGENCY</div>
-                    <div className="role">
-                      Market Research Analyst — NY, USA | 00/0000 - 00/0000
-                    </div>
-                    <ul className="bullets">
-                      <li>
-                        Conducted in-depth market research and competitor
-                        analysis, providing valuable insights to guide strategic
-                        decision-making.
-                      </li>
-                      <li>Developed comprehensive market reports.</li>
-                    </ul>
-                  </section>
-=======
                   {listPengalaman.map((item, index) => (
                     <Section key={index} className="job" perusahaan={item.perusahaan} pekerjaan={item.posisi} tahun={item.tahun} detailPekerjaan={item.detail} />
                   ))}
->>>>>>> 619e8da (version 1.0)
                   <div className="education">
                     <h2>EDUCATION</h2>
                     <div className="edu-item">
