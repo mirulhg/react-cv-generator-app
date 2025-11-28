@@ -1,7 +1,11 @@
 import { useState, useRef } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import html2pdf from "html2pdf.js";
+
 import Section from "./Section.jsx";
 import Skills from "./Skills.jsx";
+import Bahasa from "./Bahasa.jsx";
 
 export default function InputCv() {
   const maxSize = 2 * 1024 * 1024;
@@ -23,11 +27,7 @@ export default function InputCv() {
     tahun: "",
     detail: "",
   });
-  const [bahasa, setBahasa] = useState({
-    inggris: "",
-    spanyol: "",
-    prancis: "",
-  });
+  const [bahasa, setBahasa] = useState("");
   const [education, setEducation] = useState("");
 
   const [profileSummary, setProfileSummary] = useState("");
@@ -55,7 +55,7 @@ export default function InputCv() {
   }
 
   function handleProfileSummary(event) {
-    setProfileSummary(event.target.value)
+    setProfileSummary(event.target.value);
   }
 
   const [skills, setSkills] = useState("");
@@ -76,6 +76,25 @@ export default function InputCv() {
   }
 
   function handleTambahPengalaman() {
+    if (
+      pengalaman.posisi.trim() === "" ||
+      pengalaman.perusahaan.trim() === "" ||
+      pengalaman.tahun.trim() === "" ||
+      pengalaman.detail.trim() === ""
+    ) {
+      toast.warn("ISI SEMUA FIELD!", {
+        position: "top-center",
+        hideProgressBar: false,
+        autoClose: 5000,
+        pauseOnHover: true,
+        closeOnClick: false,
+        progress: undefined,
+        draggable: true,
+
+        theme: "light",
+      });
+      return;
+    }
     setListPengalaman((prev) => [...prev, pengalaman]);
     setPengalaman({
       posisi: "",
@@ -83,11 +102,28 @@ export default function InputCv() {
       tahun: "",
       detail: "",
     });
+
+    toast.success("Berhasil Menambah Pengalaman", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
+  const [listBahasa, setListBahasa] = useState([]);
+
   function handleBahasa(event) {
-    const { name, value } = event.target;
-    setBahasa((prev) => ({ ...prev, [name]: value }));
+    setBahasa(event.target.value);
+  }
+
+  function handleTambahBahasa() {
+    setListBahasa((prev) => [...prev, bahasa]);
+    setBahasa("");
   }
 
   function handleEducation(event) {
@@ -100,7 +136,7 @@ export default function InputCv() {
       profile,
       skills: listSkills,
       pengalaman: listPengalaman,
-      bahasa,
+      bahasa: listBahasa,
       education,
       profileSummary,
     });
@@ -130,11 +166,7 @@ export default function InputCv() {
         tahun: "",
         detail: "",
       });
-      setBahasa({
-        inggris: "",
-        spanyol: "",
-        prancis: "",
-      });
+      setBahasa("");
       setEducation("");
       setProfileSummary("");
 
@@ -326,39 +358,20 @@ export default function InputCv() {
           </div>
           <div className="flex flex-col p-5 min-w-20xl">
             <div className={groupLabelInput}>
-              <label>Bahasa Inggris</label>
+              <label>Bahasa</label>
               <input
                 className={inputStyled}
                 type="text"
-                placeholder="Bahasa Inggris"
+                placeholder="Masukkan bahasa yang di kuasai"
                 name="inggris"
-                value={bahasa.inggris}
-                onChange={handleBahasa}
-              />
-            </div>
-            <div className={groupLabelInput}>
-              <label>Bahasa Spanyol</label>
-              <input
-                className={inputStyled}
-                type="text"
-                placeholder="Bahasa Spanyol"
-                name="spanyol"
-                value={bahasa.spanyol}
-                onChange={handleBahasa}
-              />
-            </div>
-            <div className={groupLabelInput}>
-              <label>Bahasa Prancis</label>
-              <input
-                className={inputStyled}
-                type="text"
-                placeholder="Bahasa Prancis"
-                name="prancis"
-                value={bahasa.prancis}
+                value={bahasa}
                 onChange={handleBahasa}
               />
             </div>
           </div>
+          <button onClick={handleTambahBahasa} className={buttonStyled}>
+            Tambah Bahasa
+          </button>
           <div className="flex flex-col p-5 min-w-20xl">
             <div className={groupLabelInput}>
               <h2>Education</h2>
@@ -391,7 +404,12 @@ export default function InputCv() {
                   <label>Lokasi: {submittedData.profile.lokasi}</label>
                 </p>
                 <p className="flex flex-col border-b-stone-700">
-                  <label>Skills : {submittedData.skills.kemampuan}</label>
+                  <label>
+                    Skills :{" "}
+                    {submittedData.skills.length > 0
+                      ? submittedData.skills.join(", ")
+                      : "Belum Ada Skill"}
+                  </label>
                   <label>Pengalaman :</label>
                   <ul>
                     {listPengalaman.map((item, index) => (
@@ -403,9 +421,12 @@ export default function InputCv() {
                   </ul>
                 </p>
                 <p className="flex flex-col border-b-stone-700">
-                  <label>Inggris : {submittedData.bahasa.inggris}</label>
-                  <label>Spanyol : {submittedData.bahasa.spanyol}</label>
-                  <label>Prancis : {submittedData.bahasa.prancis}</label>
+                  <label>
+                    Bahasa :{" "}
+                    {submittedData.bahasa.length > 0
+                      ? submittedData.bahasa.join(", ")
+                      : "Belum Ada Bahasa"}
+                  </label>
                   <label>Education : {submittedData.education}</label>
                 </p>
                 <p className="flex flex-col border-b-stone-700">
@@ -472,9 +493,9 @@ export default function InputCv() {
                     <h3>LANGUAGES</h3>
                     <div className="divider"></div>
                     <ul className="lang-list">
-                      <li>English: {submittedData.bahasa.inggris}</li>
-                      <li>Spanish: {submittedData.bahasa.spanyol}</li>
-                      <li>French: {submittedData.bahasa.prancis}</li>
+                      {listBahasa.map((item, index) => (
+                        <Bahasa key={index} bahasa={item} />
+                      ))}
                     </ul>
                   </div>
                 </aside>

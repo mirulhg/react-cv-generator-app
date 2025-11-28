@@ -83,7 +83,7 @@
     .job .company{font-weight:700}
     .job .role{color:var(--muted);font-size:13px;margin-bottom:6px}
     .bullets{margin:8px 0 0 18px;color:var(--muted);font-size:14px}
-    .bullets li{margin-bottom:8px}
+    .bullets li{margin-bottom:8px; display: flex; overflow: hidden; width: auto;}
 
     .education{margin-top:12px}
     .edu-item{margin-bottom:12px}
