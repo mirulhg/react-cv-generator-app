@@ -67,7 +67,8 @@
     .contact-item{display:flex;gap:10px;align-items:center;margin:8px 0}
     .divider{height:3px;background:var(--teal);width:100%;margin:10px 0 12px 0}
 
-    .profile{font-size:14px;color:var(--muted);text-align:justify}
+    .profile{font-size:14px;color:var(--muted);text-align:justify; max-width: 600px; width: 100%; margin: 0 auto; word-wrap: break-word;
+    overflow-wrap: break-word;}
 
     .skills-list, .lang-list{list-style:none;padding:0;margin:0}
     .skills-list li, .lang-list li{margin:8px 0;padding-left:18px;position:relative}
@@ -83,7 +84,7 @@
     .job .company{font-weight:700}
     .job .role{color:var(--muted);font-size:13px;margin-bottom:6px}
     .bullets{margin:8px 0 0 18px;color:var(--muted);font-size:14px}
-    .bullets li{margin-bottom:8px; display: flex; overflow: hidden; width: auto;}
+    .bullets li{margin-bottom:8px; display: flex; overflow: hidden; width: 80%;}
 
     .education{margin-top:12px}
     .edu-item{margin-bottom:12px}

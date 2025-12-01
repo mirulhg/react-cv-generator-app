@@ -8,7 +8,7 @@ import Skills from "./Skills.jsx";
 import Bahasa from "./Bahasa.jsx";
 
 export default function InputCv() {
-  const maxSize = 2 * 1024 * 1024;
+  const maxSize = 2 * 720 * 1080;
 
   const [submittedData, setSubmittedData] = useState(null);
   const [listPengalaman, setListPengalaman] = useState([]);
@@ -68,6 +68,16 @@ export default function InputCv() {
   function handleTambahSkills() {
     setListSkills((prev) => [...prev, skills]);
     setSkills("");
+    toast.success("Berhasil Menambah Skills", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   function handlePengalaman(event) {
@@ -124,6 +134,16 @@ export default function InputCv() {
   function handleTambahBahasa() {
     setListBahasa((prev) => [...prev, bahasa]);
     setBahasa("");
+    toast.success("Berhasil Menambah Bahasa", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
   function handleEducation(event) {
@@ -206,9 +226,7 @@ export default function InputCv() {
         <div className="flex flex-col p-5 min-w-20xl">
           <h2 className="text-5xl font-serif">InputCv</h2>
           <div className={groupLabelInput}>
-            <label htmlFor="" className="">
-              Nama
-            </label>
+            <label>Nama</label>
             <input
               className={inputStyled}
               type="text"
@@ -219,7 +237,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label htmlFor="">Pekerjaan</label>
+            <label>Pekerjaan</label>
             <input
               className={inputStyled}
               type="text"
