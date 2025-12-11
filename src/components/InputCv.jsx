@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import html2pdf from "html2pdf.js";
 
+import HasilPdf from "./HasilPdf.jsx";
+
 import Section from "./Section.jsx";
 import Skills from "./Skills.jsx";
 import Bahasa from "./Bahasa.jsx";
@@ -200,9 +202,9 @@ export default function InputCv() {
   function handleSavePDF() {
     const element = printRef.current;
     const options = {
-      margin: 3,
+      margin: 1,
       filename: "CV.pdf",
-      image: { type: "jpeg", quality: 1 },
+      image: { type: "jpeg", quality: 5 },
       html2canvas: { scale: 2 },
       jsPDF: { unit: "mm", format: "a4", orentiation: "portrait" },
     };
@@ -211,22 +213,23 @@ export default function InputCv() {
   }
 
   // styling
-
+  const widthLabel = "min-w-15";
   const inputStyled =
     "w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1.5 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow max-w-2xl justify-items-start";
 
   const groupLabelInput = "flex items-center justify-between mb-4 gap-20";
   const buttonStyled =
-    "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded items-center max-w-50";
+    "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded items-center max-w-50 w-s";
   const sideButton = "flex flex-row content-center";
 
   return (
     <div className="max-w-[100] rounded overflow-hidden shadow-lg bg-linear-to-r from-cyan-200 to-amber-200">
       <div className="max-w-[100] rounded overflow-hidden shadow-lg p-20">
         <div className="flex flex-col p-5 min-w-20xl">
+          <HasilPdf />
           <h2 className="text-5xl font-serif">InputCv</h2>
           <div className={groupLabelInput}>
-            <label>Nama</label>
+            <label className={widthLabel}>Nama</label>
             <input
               className={inputStyled}
               type="text"
@@ -237,7 +240,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Pekerjaan</label>
+            <label className={widthLabel}>Pekerjaan</label>
             <input
               className={inputStyled}
               type="text"
@@ -248,7 +251,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Email</label>
+            <label className={widthLabel}>Email</label>
             <input
               className={inputStyled}
               type="text"
@@ -259,7 +262,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Telfon</label>
+            <label className={widthLabel}>Telfon</label>
             <input
               className={inputStyled}
               type="text"
@@ -270,7 +273,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Lokasi</label>
+            <label className={widthLabel}>Lokasi</label>
             <input
               className={inputStyled}
               type="text"
@@ -281,7 +284,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Upload Image :</label>
+            <label className={widthLabel}>Upload Image :</label>
             <input
               type="file"
               accept="image/"
@@ -290,19 +293,20 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label>Profile Summary</label>
+            <label className={widthLabel}>Profile Summary</label>
             <textarea
               className={inputStyled}
               name="profileSummary"
               value={profileSummary}
-              placeholder="Jelaskan Tentang Anda"
+              placeholder="Jelaskan Tentang Anda Maksimal 200 Karakter"
               onChange={handleProfileSummary}
+              maxLength={200}
             ></textarea>
           </div>
         </div>
         <div className="flex flex-col p-5 min-w-20xl">
           <div className={groupLabelInput}>
-            <label>Skills</label>
+            <label className={widthLabel}>Skills</label>
             <input
               className={inputStyled}
               type="text"
@@ -319,64 +323,64 @@ export default function InputCv() {
           </div>
         </div>
         <div className="flex flex-col p-5 min-w-20xl">
-          <div className="flex flex-col">
-            <label>Tambah Pengalaman</label>
-            <div className={groupLabelInput}>
-              <label>Posisi</label>
-              <input
-                className={inputStyled}
-                type="text"
-                name="posisi"
-                value={pengalaman.posisi}
-                onChange={handlePengalaman}
-                placeholder="Posisi pekerjaan"
-              />
-            </div>
-            <div className={groupLabelInput}>
-              <label>Perusahaan</label>
-              <input
-                className={inputStyled}
-                type="text"
-                name="perusahaan"
-                value={pengalaman.perusahaan}
-                onChange={handlePengalaman}
-                placeholder="Nama perusahaan"
-                onInput={(event) =>
-                  (event.target.value = event.target.value.toUpperCase())
-                }
-              />
-            </div>
-            <div className={groupLabelInput}>
-              <label>Tahun</label>
-              <input
-                className={inputStyled}
-                type="text"
-                name="tahun"
-                value={pengalaman.tahun}
-                onChange={handlePengalaman}
-                placeholder="Tahun bekerja"
-              />
-            </div>
-            <div className={groupLabelInput}>
-              <label>Detail Pekerjaan</label>
-              <textarea
-                className={inputStyled}
-                type="text"
-                name="detail"
-                value={pengalaman.detail}
-                onChange={handlePengalaman}
-                placeholder="Ceritakan Pengalaman Anda Bekerja Pada Perusahaan"
-              />
-            </div>
-            <div className={sideButton}>
-              <button onClick={handleTambahPengalaman} className={buttonStyled}>
-                Tambah Pengalaman
-              </button>
-            </div>
+          <label className={widthLabel}>Tambah Pengalaman</label>
+          <div className={groupLabelInput}>
+            <label className={widthLabel}>Posisi</label>
+            <input
+              className={inputStyled}
+              type="text"
+              name="posisi"
+              value={pengalaman.posisi}
+              onChange={handlePengalaman}
+              placeholder="Posisi pekerjaan"
+            />
           </div>
+          <div className={groupLabelInput}>
+            <label className={widthLabel}>Perusahaan</label>
+            <input
+              className={inputStyled}
+              type="text"
+              name="perusahaan"
+              value={pengalaman.perusahaan}
+              onChange={handlePengalaman}
+              placeholder="Nama perusahaan"
+              onInput={(event) =>
+                (event.target.value = event.target.value.toUpperCase())
+              }
+            />
+          </div>
+          <div className={groupLabelInput}>
+            <label className={widthLabel}>Tahun</label>
+            <input
+              className={inputStyled}
+              type="text"
+              name="tahun"
+              value={pengalaman.tahun}
+              onChange={handlePengalaman}
+              placeholder="Tahun bekerja"
+            />
+          </div>
+          <div className={groupLabelInput}>
+            <label className={widthLabel}>Detail Pekerjaan</label>
+            <textarea
+              className={inputStyled}
+              type="text"
+              name="detail"
+              value={pengalaman.detail}
+              onChange={handlePengalaman}
+              maxLength={500}
+              placeholder="Ceritakan Pengalaman Anda Bekerja Pada Perusahaan Maksimal 500 Karakter"
+            />
+          </div>
+          <div className={sideButton}>
+            <button onClick={handleTambahPengalaman} className={buttonStyled}>
+              Tambah Pengalaman
+            </button>
+          </div>
+
           <div className="flex flex-col p-5 min-w-20xl">
             <div className={groupLabelInput}>
-              <label>Bahasa</label>
+              <label className={widthLabel}>Bahasa</label>
               <input
                 className={inputStyled}
                 type="text"
