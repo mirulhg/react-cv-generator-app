@@ -9,7 +9,7 @@ export default function hasilPdf() {
       <div className="flex items-center justify-center gap-3 m-3">
         <button
           onClick={() => setIsOpen(true)}
-          className="px-3 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+          className="text-white bg-linear-to-r from-cyan-500 to-blue-500 hover:bg-linear-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5 rounded-lg"
         >
           Contoh Hasil PDF
         </button>

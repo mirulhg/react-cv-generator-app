@@ -213,17 +213,17 @@ export default function InputCv() {
   }
 
   // styling
-  const widthLabel = "min-w-15";
+  const widthLabel = "min-w-15 text-slate-500";
   const inputStyled =
     "w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-1.5 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow max-w-2xl justify-items-start";
 
   const groupLabelInput = "flex items-center justify-between mb-4 gap-20";
   const buttonStyled =
-    "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded items-center max-w-50 w-s";
-  const sideButton = "flex flex-row content-center";
+    "text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5 rounded-lg";
+  const sideButton = "flex flex-row content-center justify-end";
 
   return (
-    <div className="max-w-[100] rounded overflow-hidden shadow-lg bg-linear-to-r from-cyan-200 to-amber-200">
+    <div className="max-w-[100] rounded overflow-hidden shadow-lg bg-linear-to-r from-teal-400 to-yellow-200">
       <div className="max-w-[100] rounded overflow-hidden shadow-lg p-20">
         <div className="flex flex-col p-5 min-w-20xl">
           <HasilPdf />
@@ -316,7 +316,7 @@ export default function InputCv() {
               onChange={handleSkills}
             />
           </div>
-          <div>
+          <div className={sideButton}>
             <button onClick={handleTambahSkills} className={buttonStyled}>
               Tambah Skills
             </button>
@@ -336,7 +336,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <label className={widthLabel}>Perusahaan</label>
+            <labgitel className={widthLabel}>Perusahaan</labgitel>
             <input
               className={inputStyled}
               type="text"
@@ -391,12 +391,14 @@ export default function InputCv() {
               />
             </div>
           </div>
-          <button onClick={handleTambahBahasa} className={buttonStyled}>
-            Tambah Bahasa
-          </button>
+          <div className={sideButton}>
+            <button onClick={handleTambahBahasa} className={buttonStyled}>
+              Tambah Bahasa
+            </button>
+          </div>
           <div className="flex flex-col p-5 min-w-20xl">
             <div className={groupLabelInput}>
-              <h2>Education</h2>
+              <label className={widthLabel}>Education</label>
               <input
                 className={inputStyled}
                 type="text"
