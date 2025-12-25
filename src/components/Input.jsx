@@ -1,13 +1,26 @@
-export default function Input() {
-    return <div className={groupLabelInput}>
-            <label className={widthLabel}>Nama</label>
-            <input
-              className={inputStyled}
-              type="text"
-              name="nama"
-              placeholder="masukkan nama"
-              value={profile.nama}
-              onChange={handleProfile}
-            />
-          </div>
+export default function Input({
+  onChange,
+  inputStyled,
+  placeHolder,
+  value,
+  groupLabelInput,
+  widthLabel,
+  label,
+  setInputStyled,
+  type,
+  nama,
+}) {
+  return (
+    <div className={groupLabelInput}>
+      <label className={widthLabel}>{label}</label>
+      <input
+        className={setInputStyled}
+        type={type}
+        name={nama}
+        placeholder={placeHolder}
+        value={value}
+        onChange={onChange}
+      />
+    </div>
+  );
 }

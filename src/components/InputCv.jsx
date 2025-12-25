@@ -8,6 +8,7 @@ import HasilPdf from "./HasilPdf.jsx";
 import Section from "./Section.jsx";
 import Skills from "./Skills.jsx";
 import Bahasa from "./Bahasa.jsx";
+import Input from "./Input.jsx";
 
 export default function InputCv() {
   const maxSize = 2 * 720 * 1080;
@@ -228,8 +229,8 @@ export default function InputCv() {
         <div className="flex flex-col p-5 min-w-20xl">
           <HasilPdf />
           <h2 className="text-5xl font-serif">InputCv</h2>
-          <div className={groupLabelInput}>
-            <label className={widthLabel}>Nama</label>
+          {/* <div className={groupLabelInput}> */}
+          {/* <label className={widthLabel}>Nama</label>
             <input
               className={inputStyled}
               type="text"
@@ -237,8 +238,19 @@ export default function InputCv() {
               placeholder="masukkan nama"
               value={profile.nama}
               onChange={handleProfile}
-            />
-          </div>
+            /> */}
+          <Input
+            nama="nama"
+            type="text"
+            placeHolder="masukan nama"
+            value={profile.nama}
+            onChange={handleProfile}
+            label="Nama"
+            widthLabel={widthLabel}
+            groupLabelInput={groupLabelInput}
+            setInputStyled={inputStyled}
+          />
+          {/* </div> */}
           <div className={groupLabelInput}>
             <label className={widthLabel}>Pekerjaan</label>
             <input
@@ -336,7 +348,7 @@ export default function InputCv() {
             />
           </div>
           <div className={groupLabelInput}>
-            <labgitel className={widthLabel}>Perusahaan</labgitel>
+            <label className={widthLabel}>Perusahaan</label>
             <input
               className={inputStyled}
               type="text"
